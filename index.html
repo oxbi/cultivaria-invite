@@ -305,6 +305,19 @@ footer .licences { font-size: .85em; color: #6c727a; }
   .hero .line { margin-left: 0; text-align: left; }
   .hero .btns, .hero .hooks { justify-content: flex-start; margin-left: 0; }
 }
+/* r6 phone fix (the user, 01:28: page shifted left and cut off on the phone). Cause: with the phone's text scaling the
+   header row (logo + join button + RU + menu) grew past the screen and widened the whole page. */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html, body { overflow-x: hidden; }
+@supports (overflow-x: clip) { html, body { overflow-x: clip; } }
+.nav { min-width: 0; }
+.nav-right { min-width: 0; flex-shrink: 1; }
+@media (max-width: 600px) {
+  .nav { gap: 10px; }
+  .nav-right .btn { padding: .6em .9em; font-size: 14px; white-space: nowrap; }
+}
+@media (max-width: 380px) { .nav-right .btn { display: none; } }  /* the hero has the same join button right below */
+@media (max-width: 600px) { .toc { grid-template-columns: repeat(2, minmax(0, 1fr)); } .toc a { min-width: 0; overflow-wrap: anywhere; } }
 
 </style>
 </head>
